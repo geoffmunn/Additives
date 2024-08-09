@@ -6,7 +6,8 @@ import sqlite3
 from itertools import combinations
 
 DB_FILE_NAME = 'numbers.db'
-LENGTH = 6
+LENGTH = 4
+TARGET = 100
 
 def main():
     
@@ -119,6 +120,10 @@ def main():
 
         current_set.append(current_number)
 
+        f = open(f"results/{LENGTH} - {TARGET}.txt", "w")
+        f.write(' '.join(str(v) for v in current_set))
+        f.close()
+
         # Remove all numbers from the total list which are less than the $current_number
         #print ('old totals:', totals)
         #filtered:list = list(filter(lambda num: num > current_number, totals))
@@ -130,7 +135,7 @@ def main():
         conn.execute(delete_totals, [current_number])
 
         print ('total so far:', len(current_set))
-        if len(current_set) >= 100:
+        if len(current_set) >= TARGET:
             break
 
     # Now find the next number we can add
