@@ -121,7 +121,7 @@ def main():
         current_set.append(current_number)
 
         f = open(f"results/{LENGTH} - {TARGET}.txt", "w")
-        f.write(' '.join(str(v) for v in current_set))
+        f.write(' '.join(str(v) for v in current_set) + "\n\nTotal number: " + len(current_set))
         f.close()
 
         # Remove all numbers from the total list which are less than the $current_number
